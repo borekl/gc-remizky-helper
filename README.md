@@ -5,6 +5,8 @@ GC8GHG5 "Remízky" and GC8GJW0 "Remízky II aneb Fata morgána".
 Both seem to use the same encoding table, which is useful as
 two sets of encoded coordinates provide more data than one.
 
+See following [screenshot](https://i.imgur.com/aNbZcRz.png).
+
 ## The Puzzle
 
 In both listings there is the same 16×16 matrix with seemingly
