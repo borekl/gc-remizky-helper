@@ -1,0 +1,64 @@
+body {
+  display: flex; justify-content: center; align-items: center;
+  margin: 0;
+  height: 100vh;
+}
+
+#app {
+  display: flex;
+}
+
+#app > div {
+  margin: 1em;
+}
+
+.bordered {
+  border: 1px solid #888;
+}
+
+.inline {
+  display: inline-block;
+}
+.bold {
+  font-weight: bold;
+}
+span.gcid {
+  display: inline-block;
+  width: 5em;
+}
+.hit {
+  background-color: rgb(255, 248, 152);
+}
+span.coord {
+  font-weight: bold;
+}
+.table {
+  margin-bottom: 2em;
+}
+.tabcaption {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+.tabcaption > :first-child {
+  font-weight: bold;
+}
+.cell {
+  display: inline-block;
+  font-size: 100%;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 2rem;
+}
+.selectable {
+  cursor: pointer;
+  user-select: none;
+}
+.selected {
+  background-color: rgb(255, 172, 172);
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

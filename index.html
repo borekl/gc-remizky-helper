@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>GC8GHG5 Remízky - solution helper app</title>
+  <link rel="stylesheet" href="default.css" type="text/css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="remizky-explore.js"></script>
+</head>
+
+<body>
+
+<div class="appcontainer">
+
+
+<div id="app">
+
+  <div> <!-- left column ----------------------------------------------------->
+
+    <div class="tabcaption">
+      <div>Published Coordinates</div>
+    </div>
+
+    <div>
+      <span class="gcid">GC8GHG5</span>
+      <span class="bold">N</span> 50° 43.639
+      <span class="bold">E</span> 014° 01.913<br>
+      <span class="gcid">GC8GJW0</span>
+      <span class="bold">N</span> 50° 44.230
+      <span class="bold">E</span> 013° 59.343
+    </div>
+
+    <div class="tabcaption">
+      <div>All Squares</div>
+    </div>
+
+    <div class="bordered inline">
+      <div>
+        <div class="cell bordered bold" v-for="(x,i) in moreInfo.all.numbers">
+          {{i}}
+        </div>
+      </div>
+      <div>
+        <div class="cell bordered" v-for="(x,i) in moreInfo.all.numbers">
+          {{x}}
+        </div>
+      </div>
+    </div>
+
+    <div class="tabcaption">
+      <div>{{moreInfo.marked.list.length}} Mystery Squares</div>
+    </div>
+
+    <div class="bordered inline">
+      <div>
+        <div class="cell bordered bold" v-for="(x,i) in moreInfo.marked.numbers">
+          {{i}}
+        </div>
+      </div>
+      <div>
+        <div class="cell bordered" v-for="(x,i) in moreInfo.marked.numbers">
+          {{x}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div> <!-- right column ---------------------------------------------------->
+
+    <div class="tabcaption">
+      <div>Key</div>
+    </div>
+
+    <div class="bordered inline">
+      <div class="keyvalues">
+        <div class="cell bordered bold">N</div><div
+        v-for="(x,i) in coords_key.lat1" :key="'key-lat1-'+i"
+        class="cell bordered"
+        :class="{hit: coords_key_map.lat1[i]}"
+        >{{x}}</div><div
+        class="cell bordered bold">E</div><div
+        :class="{hit: coords_key_map.lon1[i]}"
+        v-for="(x,i) in coords_key.lon1" :key="'key-lon1-'+i"
+        class="cell bordered" >{{x}}</div>
+      </div><div
+      class="decoded"><div class="cell bordered bold"> </div><div
+        class="cell bordered"
+        v-for="(x,i) in decode.lat1" :key="'decode-lat1-'+i">
+        {{typeof(x) !== 'undefined'?x:' '}}
+        </div><div class="cell bordered bold"> </div><div
+        class="cell bordered"
+        v-for="(x,i) in decode.lon1" :key="'decode-lon1-'+i">
+        {{typeof(x) !== 'undefined'?x:' '}}
+        </div>
+      </div>
+      <div class="keyvalues">
+        <div class="cell bordered bold">N</div><div
+        v-for="(x,i) in coords_key.lat2" :key="'key-lat2-'+i"
+        class="cell bordered"
+        :class="{hit: coords_key_map.lat2[i]}"
+        >{{x}}</div><div
+        class="cell bordered bold">E</div><div
+        :class="{hit: coords_key_map.lon2[i]}"
+        v-for="(x,i) in coords_key.lon2" :key="'key-lon2-'+i"
+        class="cell bordered" >{{x}}</div>
+      </div><div
+      class="decoded"><div class="cell bordered bold"> </div><div
+        class="cell bordered"
+        v-for="(x,i) in decode.lat2" :key="'decode-lat2-'+i">
+        {{typeof(x) !== 'undefined'?x:' '}}
+        </div><div class="cell bordered bold"> </div><div
+        class="cell bordered"
+        v-for="(x,i) in decode.lon2" :key="'decode-lon2-'+i">
+        {{typeof(x) !== 'undefined'?x:' '}}
+        </div>
+      </div>
+    </div>
+
+    <div class="tabcaption">
+      <div>
+        <span v-if="!showPath">Encoding Table</span>
+        <span v-else>Walk Sequence</span>
+      </div>
+      <div v-if="path.length">
+        Path Length: {{path.length}}
+      </div>
+    </div>
+
+    <div
+      class="table bordered"
+    >
+      <div v-for="(row,i) in viewTable" :key="'table_row'+i">
+        <div
+          class="cell bordered selectable"
+          :class="{selected: typeof(pathTable[i][j]) !== 'undefined', bold: markTable[i][j]}"
+          v-for="(col,j) in row"
+          :key="'table_cell'+i+'-'+j"
+        >
+          {{typeof(col) !== 'undefined'?col:' '}}
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <div>
+        <button @click="clear" :disabled="!path.length">Clear All</button>
+        <button @click="clearOne" :disabled="!path.length">Clear Last</button>
+      </div>
+      <div>
+        <button @click="switchView">Switch View</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
